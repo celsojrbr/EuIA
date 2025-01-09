@@ -24,8 +24,20 @@ Um assistente pessoal baseado em IA que responde perguntas sobre o seu perfil, c
 ---
 
 ## 📂 Estrutura do Projeto
+.
+├── src/
+│   ├── app/
+│   │   ├── api/
+│   │   │   ├── chat/
+│   │   │   │   └── route.js      # Rota principal da API para interações
+│   │   └── page.js               # Página principal do projeto
+│   ├── data/
+│   │   ├── perfil.json           # Dados personalizados do perfil
+│   │   └── curiosidades.json     # Curiosidades relacionadas a palavras-chave
+│   ├── styles/
+│   │   └── globals.css           # Estilização global com TailwindCSS
+└── README.md                     # Documentação do projeto
 
-├── src │ ├── app │ │ ├── api │ │ │ ├── generate │ │ │ │ ├── route.js # Lógica da API para o assistente │ ├── data │ │ ├── perfil.json # Dados do perfil │ │ ├── curiosidades.json # Dados de curiosidades
 
 
 ---
@@ -44,3 +56,28 @@ Um assistente pessoal baseado em IA que responde perguntas sobre o seu perfil, c
 ```bash
 git clone https://github.com/celsojrbr/EuIA
 cd NOME_DO_REPOSITORIO
+
+## Como Usar
+
+    Faça Perguntas: Utilize o campo de entrada para perguntar qualquer coisa sobre o perfil ou as curiosidades.
+    Exemplos de Perguntas:
+        "Qual é a sua idade?"
+        "Onde você mora?"
+        "Me fale algo curioso sobre gatos."
+
+## Ajustes e Melhorias
+
+    Adicionar Mais Curiosidades: Atualize o arquivo curiosidades.json.
+    Personalizar o Perfil: Modifique o arquivo perfil.json.
+    Melhorias no Prompt: Ajuste o texto enviado ao modelo Gemini para refinar as respostas.
+
+## Licença
+
+Este projeto está licenciado sob a MIT License.
+
+
+## Autor
+
+Aparecido Celso De Souza Junior
+    LinkedIn
+    GitHub

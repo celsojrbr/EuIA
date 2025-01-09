@@ -38,6 +38,9 @@ function buscarInformacao(message) {
   if (mensagemLower.includes('hobbies') || mensagemLower.includes('hobby')) {
     return `Meus hobbies incluem: ${perfil.hobbies.join(', ')}.`;
   }
+  if (mensagemLower.includes('cor') || mensagemLower.includes('cor')) {
+    return `Minha cor de pele é ${perfil.cor.join(', ')}.`;
+  }
 
   return null; // Retorna null se nenhuma palavra-chave for encontrada
 }
