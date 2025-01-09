@@ -39,7 +39,7 @@ function buscarInformacao(message) {
     return `Meus hobbies incluem: ${perfil.hobbies.join(', ')}.`;
   }
   if (mensagemLower.includes('cor') || mensagemLower.includes('cor')) {
-    return `Minha cor de pele é ${perfil.cor.join(', ')}.`;
+    return `Minha cor de pele é ${perfil.cor}.`;
   }
 
   return null; // Retorna null se nenhuma palavra-chave for encontrada
