@@ -1,8 +1,46 @@
 import perfil from '@/data/perfil.json';
+import curiosidades from '@/data/curiosidades.json';
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextResponse } from "next/server";
 
 let history = []; // Histórico temporário
+
+// Função para buscar curiosidades
+function buscarCuriosidade(message) {
+  const palavras = message.toLowerCase().split(' ');
+  for (const palavra of palavras) {
+    const curiosidadeEncontrada = curiosidades.find(
+      (item) => item.palavraChave.toLowerCase() === palavra
+    );
+    if (curiosidadeEncontrada) {
+      return curiosidadeEncontrada.curiosidade;
+    }
+  }
+  return null;
+}
+
+// Função para buscar informações do perfil
+function buscarInformacao(message) {
+  const mensagemLower = message.toLowerCase();
+
+  if (mensagemLower.includes('idade')) {
+    return `Minha idade é ${perfil.idade}.`;
+  }
+
+  if (mensagemLower.includes('data de nascimento') || mensagemLower.includes('nascimento')) {
+    return `Minha data de nascimento é ${perfil.datanascimento}.`;
+  }
+
+  if (mensagemLower.includes('endereço')) {
+    return `Meu endereço é ${perfil.endereço}.`;
+  }
+
+  if (mensagemLower.includes('hobbies') || mensagemLower.includes('hobby')) {
+    return `Meus hobbies incluem: ${perfil.hobbies.join(', ')}.`;
+  }
+
+  return null; // Retorna null se nenhuma palavra-chave for encontrada
+}
 
 export async function POST(req) {
   try {
@@ -15,6 +53,18 @@ export async function POST(req) {
 
     // Adicionar mensagem do usuário ao histórico
     history.push({ role: "user", content: message });
+
+    // Verificar se existe uma curiosidade relacionada
+    const curiosidade = buscarCuriosidade(message);
+    if (curiosidade) {
+      return NextResponse.json({ reply: curiosidade });
+    }
+
+    // Verificar se existe uma informação do perfil relacionada
+    const informacao = buscarInformacao(message);
+    if (informacao) {
+      return NextResponse.json({ reply: informacao });
+    }
 
     // Criar o prompt combinando o perfil com a mensagem do usuário
     const prompt = `
@@ -31,7 +81,7 @@ export async function POST(req) {
 
     // Instanciar o cliente Google Generative AI
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    
+
     // Obter o modelo especificado
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 

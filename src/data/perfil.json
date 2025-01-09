@@ -74,10 +74,6 @@
     "LinkedIn": "https://www.linkedin.com/in/aparecido-celso-de-s-junior/",
     "GitHub": "https://github.com/"
   },
-  "curiosidades": {
-    "hyukendo": "não kleber, ele não assiste hyukendo, mas ele sempre te lembra que você foi na casa de seu amigo DIEGO para assister quando tinha acabado a luz em um certo dia",
-	"ryukendo": "não kleber, ele não assiste ryukendo, mas ele sempre te lembra que você foi na casa de seu amigo DIEGO para assister quando tinha acabado a luz em um certo dia"
-  },
   "experiencia": [
     {
       "empresa": "Anima Instituto",
@@ -110,5 +106,16 @@
 	"instituicao":"Faculdade de Tecnologia de Carapicuíba",
 	"periodo":"2012 - 2017"
 	}
-  ]
+  ],
+  "hobbies":[
+    "Programa coisa divertidas",
+    "assistir animes",
+    "ler mangas",
+    "jogar",
+    "ir em eventos nerds",
+    "cultura Geek"
+  ],
+  "datanascimento":	"08/05/1993",
+  "endereço":"avenida das conchas, 56, Santana de parnaiba. CEP:06535-205",
+  "idade":"31" 
 }
