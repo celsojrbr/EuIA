@@ -24,7 +24,7 @@ export default function Chat() {
 
       const data = await response.json();
       setMessages((prev) => [...prev, { role: 'ai', content: data.reply }]);
-    } catch (error) {
+    } catch {
       setMessages((prev) => [
         ...prev,
         { role: 'ai', content: 'Desculpe, houve um erro ao processar sua mensagem.' },
@@ -35,16 +35,19 @@ export default function Chat() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
-      <div className="w-full max-w-2xl bg-white shadow-lg rounded-lg p-6">
-        <div className="overflow-y-auto max-h-96 mb-4">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-6">
+        <div className="overflow-y-auto max-h-96 mb-4 border-b border-gray-200 pb-4">
           {messages.map((msg, idx) => (
             <div
               key={idx}
-              className={`mb-2 p-3 rounded ${
-                msg.role === 'ai' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-800'
+              className={`mb-2 p-2 rounded-lg ${
+                msg.role === 'ai'
+                  ? 'bg-blue-100 text-blue-800 self-start'
+                  : 'bg-green-100 text-green-800 self-end'
               }`}
             >
+              <span className="font-bold">{msg.role === 'ai' ? 'IA: ' : 'Você: '}</span>
               {msg.content}
             </div>
           ))}
@@ -52,15 +55,15 @@ export default function Chat() {
         <div className="flex">
           <input
             type="text"
-            className="flex-grow border rounded-l p-2"
+            className="flex-grow border border-gray-300 rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Digite sua mensagem..."
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Digite sua mensagem..."
           />
           <button
             onClick={sendMessage}
             disabled={loading}
-            className={`bg-blue-500 text-white px-4 py-2 rounded-r ${
+            className={`bg-blue-500 text-white px-4 py-2 rounded-r-lg ${
               loading ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-600'
             }`}
           >
